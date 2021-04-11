@@ -5,7 +5,9 @@ import com.huatec.hiot_cloud.test.mvptest.module.User;
 public class TestPresenter {
     private TestView view;
 
-    public TestPresenter(TestView view) {
+    public TestPresenter() {
+    }
+    public void setView(TestView view){
         this.view = view;
     }
 
@@ -14,6 +16,11 @@ public class TestPresenter {
             view.showMessage("登录成功");
         }else {
             view.showMessage("登录失败");
+        }
+    }
+    public void destroy(){
+        if (view != null){
+            view = null;
         }
     }
 }
