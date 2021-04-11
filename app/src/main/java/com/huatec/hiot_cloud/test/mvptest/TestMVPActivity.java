@@ -1,7 +1,5 @@
 package com.huatec.hiot_cloud.test.mvptest;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,16 +9,24 @@ import android.widget.Toast;
 
 import com.huatec.hiot_cloud.R;
 import com.huatec.hiot_cloud.base.BaseActivity;
+import com.huatec.hiot_cloud.test.dagger2test.DaggerPresentComponent;
+import com.huatec.hiot_cloud.test.dagger2test.PresentComponent;
 import com.huatec.hiot_cloud.test.mvptest.module.User;
 
+import javax.inject.Inject;
+
+import dagger.internal.DaggerCollections;
+
 public class TestMVPActivity extends BaseActivity<TestView,TestPresenter> implements TestView{
-    private TestPresenter presenter;
+    @Inject
+    TestPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        presenter = new TestPresenter();
 
+        getComponent().inject(this);
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_test_mvp);
         Log.d("tag","test");
         final EditText etUerName = findViewById(R.id.et_user_name);
@@ -48,6 +54,13 @@ public class TestMVPActivity extends BaseActivity<TestView,TestPresenter> implem
     @Override
     public TestPresenter createPresenter() {
         return presenter;
+    }
+/*
+*创建注入器
+* @return
+ */
+    public PresentComponent getComponent(){
+        return DaggerPresentComponent.builder().build();
     }
 
 
