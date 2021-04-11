@@ -27,7 +27,6 @@ public class TestMVPActivity extends BaseActivity<TestView,TestPresenter> implem
         final EditText etPassword = findViewById(R.id.et_password);
         Button btnLogin = findViewById(R.id.btn_login);
         final User user = new User();
-        TestPresenter presenter = new TestPresenter();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
