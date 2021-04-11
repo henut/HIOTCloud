@@ -7,7 +7,7 @@ import androidx.core.app.TaskStackBuilder;
 /*
  *MVP架构Activity基类
  */
-public class BaseActivity <V extends BaseView,P extends BasePresent >extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity <V extends BaseView,P extends BasePresent >extends AppCompatActivity implements BaseView {
 
     private P presenter;
     @Override
