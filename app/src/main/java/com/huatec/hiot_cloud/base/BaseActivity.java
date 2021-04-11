@@ -7,16 +7,17 @@ import androidx.core.app.TaskStackBuilder;
 /*
  *MVP架构Activity基类
  */
-public abstract class BaseActivity <V extends BaseView,P extends BasePresent >extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity <V extends BaseView,P extends BasePresenter>extends AppCompatActivity implements BaseView {
 
     private P presenter;
     @Override
     public void onCreateSupportNavigateUpTaskStack(@NonNull TaskStackBuilder builder) {
         super.onCreateSupportNavigateUpTaskStack(builder);
+        createPresenter();
         presenter.setView(this);
     }
 
-    public abstract void createPresenter();
+    public abstract P createPresenter();
 
     @Override
     protected void onDestroy() {
